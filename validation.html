@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <!-- <script src="./validation.js"></script> -->
+</head>
+
+<body>
+    <div class="formulaire">
+        <div class="div1"> username:<input id="id1" type="text" name="username"></div>
+        </br>
+        <div class="div2">adress:
+            <input id="id2" type="text" name=adresse></div>
+        </br>
+        <div class="div3">Email-adress:
+            <input id="id3" type="text" name="email"></div>
+        </br>
+        <div class="div4">password:
+            <input id="id4" type="password" name="pwrd"></div>
+        </br>
+        <div class="div5">comment:
+            <input id="id5" type="text" name="comment"></div>
+        </br>
+        <!-- <button id="sendd" onclick="submit()">send</button></br> -->
+        <button id="sendd">send</button></br>
+
+        <button onclick="res()" id="but2">reset</button>
+    </div>
+    </br>
+
+    </div>
+    <script>
+        let name = document.getElementById('id1')
+        let address = document.getElementById('id2')
+        let email = document.getElementById('id3')
+        const pass = document.getElementById('id4')
+        const comment = document.getElementById('id5')
+
+        let button = document.getElementById('sendd')
+        let numbers = /[0-9]/g;
+        let upperCaseLetters = /[A-Z]/g;
+        let lowerCaseLetters = /[a-z]/g;
+
+
+        button.addEventListener("click", (e) => {
+            e.preventDefault()
+            inputs(name, address, email, pass, comment);
+            passWord(pass);
+            adresse(email)
+            maj(pass, numbers, lowerCaseLetters, upperCaseLetters)
+
+
+        })
+
+
+        function inputs(name, address, email, pass, comment) {
+            if (name.value === "" || address.value === "" || email.value === "" || pass.value === "" || comment.value === "") {
+                alert("champs vide")
+            }
+        }
+
+        function passWord(pass) {
+            if (pass.value.length < 8) {
+                alert("The password has less than 8 characters")
+            }
+        }
+
+
+        function adresse(email) {
+            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email.value)) {
+                console.log((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email.value))
+                alert("Doesn't have a valid e-mail adress")
+            }
+        }
+
+
+
+        function maj(pass, numbers, lowerCaseLetters, upperCaseLetters) {
+            if ((!pass.value.match(numbers)) ||
+                (!pass.value.match(lowerCaseLetters)) ||
+                (!pass.value.match(upperCaseLetters))) {
+                alert("Password invalid")
+            }
+
+        }
+
+
+        function res() {
+            name.value = ""
+            pass.value = ""
+            email.value = ""
+            address.value = ""
+            comment.value = ""
+        }
+    </script>
+</body>
+
+</html>
